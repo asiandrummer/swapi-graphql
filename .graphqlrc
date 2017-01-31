@@ -1,0 +1,10 @@
+{
+  "build-configs": {
+    "swapi-graphql": {
+      "input-dirs": [
+        "doc"
+      ],
+      "schema-file": "src/schema/schema.graphql"
+    }
+  }
+}

@@ -32,6 +32,10 @@ import {
   nodeField,
 } from './relayNode';
 
+import { printSchema } from 'graphql';
+
+import fs from 'fs';
+import path from 'path';
 
 /**
  * Creates a root field to get an object of a given type.
@@ -131,5 +135,15 @@ const rootType = new GraphQLObjectType({
     node: nodeField,
   }),
 });
+
+const schema = new GraphQLSchema({ query: rootType });
+const printed = printSchema(schema);
+const schemaPath = path.resolve(
+  path.join(
+    process.cwd(),
+    'src/schema/schema.graphql'
+  )
+);
+fs.writeFileSync(schemaPath, printed);
 
 export default new GraphQLSchema({ query: rootType });
